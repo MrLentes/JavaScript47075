@@ -18,6 +18,8 @@ const luchador9 = new Luchador("Payaso Gomez", "Paraguayo", false)
 
 const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchador5, luchador6, luchador7, luchador8, luchador9];
 
+localStorage.setItem('luchadoresData', JSON.stringify(luchadores));
+
 const Carta = document.getElementById("carta")
 document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
 
