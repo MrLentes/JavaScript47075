@@ -18,11 +18,21 @@ const luchador9 = new Luchador("Payaso Gomez", "Paraguayo", false)
 
 const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchador5, luchador6, luchador7, luchador8, luchador9];
 
+const Carta = document.getElementById("carta")
+document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
+
+/*
+document.getElementById("btnConsultarEventos").addEventListener("click", ConsultarFecha)
+document.getElementById("btnConsultarEntradas").addEventListener("click", CalcularPrecio)
+document.getElementById("btnConsultarLuchadores").addEventListener("click", InfoLuchadores)
+
+/* Reemplazado
+
 function ElegirTarea(){
     alert("Por favor elija la consulta que desea hacer")
     let tarea = parseInt(prompt("1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
     while (isNaN(tarea) || tarea === '' || tarea > 3 || tarea < 1){
-    tarea = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas."))
+    tarea = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
     }
     switch(tarea){
         case 1:
@@ -37,6 +47,24 @@ function ElegirTarea(){
             alert("Por favor ingrese un numero valido.")
             break
     }
+}
+
+*/
+
+function ElegirConsulta(){
+    Carta.innerHTML = "";
+    const consultas = document.createElement("div")
+    consultas.innerHTML = `
+        <p>Por favor elija la consulta que desea hacer:</p>
+        <button id="btnEventos"> Consultar eventos programados</button>
+        <button id="btnPrecio"> Consultar precio de entradas</button>
+        <button id="btnLuchadores"> Consultar información de los luchadores</button>
+    `
+    Carta.appendChild(consultas)
+
+    document.getElementById("btnEventos").addEventListener("click", ConsultarFecha)
+    document.getElementById("btnPrecio").addEventListener("click", CalcularPrecio)
+    document.getElementById("btnLuchadores").addEventListener("click", InfoLuchadores)
 }
 
 function ConsultarFecha(){
@@ -63,9 +91,9 @@ function CalcularPrecio(){
 
 function InfoLuchadores(){
     alert("Que deseas consultar?")
-    let info = parseInt(prompt("1.- Consultar los luchadores de la empresa. \n2.- Consultar los lucjadores lesionados."))
+    let info = parseInt(prompt("1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
     while (isNaN(info) || info === '' || info > 2 || info < 1){
-    info = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los luchadores de la empresa. \n2.- Consultar los lucjadores lesionados."))
+    info = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
     }
     if (info == 1) MostrarInfo()
     else if (info == 2) InfoLesionados()
@@ -84,4 +112,4 @@ function InfoLesionados(){
     }
 }
 
-ElegirTarea()
+//ElegirTarea()
