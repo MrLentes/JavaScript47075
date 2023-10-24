@@ -18,7 +18,7 @@ const luchador9 = new Luchador("Payaso Gomez", "Paraguayo", false)
 
 const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchador5, luchador6, luchador7, luchador8, luchador9];
 
-localStorage.setItem('luchadoresData', JSON.stringify(luchadores));
+localStorage.setItem('luchadoresData', JSON.stringify(luchadores))
 
 const Carta = document.getElementById("carta")
 document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
@@ -54,7 +54,7 @@ function ElegirTarea(){
 */
 
 function ElegirConsulta(){
-    Carta.innerHTML = "";
+    Carta.innerHTML = ""
     const consultas = document.createElement("div")
     consultas.innerHTML = `
         <p>Por favor elija la consulta que desea hacer:</p>
@@ -64,11 +64,57 @@ function ElegirConsulta(){
     `
     Carta.appendChild(consultas)
 
-    document.getElementById("btnEventos").addEventListener("click", ConsultarFecha)
-    document.getElementById("btnPrecio").addEventListener("click", CalcularPrecio)
+    document.getElementById("btnEventos").addEventListener("click", ConsultarEventos)
+    document.getElementById("btnPrecio").addEventListener("click", PrecioDeEntradas)
     document.getElementById("btnLuchadores").addEventListener("click", InfoLuchadores)
 }
 
+function ConsultarEventos(){
+    Carta.innerHTML = "Hay eventos en Octubre y Noviembre"
+    const eventoElegido = document.createElement("div")
+    eventoElegido.innerHTML = `
+        <p>Elija que mes que quiere consultar:</p>
+        <button id = "btnOctubre">Octubre</button>
+        <button id = "btnNoviembre">Noviembre</button>
+    `
+    Carta.appendChild(eventoElegido)
+    
+    let octubre = "Hay eventos en 13/10/2023 y 27/10/2023"
+    let noviembre = "Hay eventos en 08/11/2023"
+    document.getElementById("btnOctubre").addEventListener("click", () => Carta.innerHTML = octubre)
+    document.getElementById("btnNoviembre").addEventListener("click", () => Carta.innerHTML = noviembre)
+}
+
+function PrecioDeEntradas(){
+    Carta.innerHTML = "Elija el tipo de entrada que desee consultar"
+    const entradaElegida = document.createElement("div")
+    entradaElegida.innerHTML = `
+        <button id="btnGeneral">Asientos Generales</button>
+        <button id="btnRingside">Asientos Ringside</button>
+        <button id="btnDePie">De pie</button>
+    `
+    Carta.appendChild(entradaElegida)
+    let entrada = 2500
+
+    let General = () => {Carta.innerHTML = "La entrada cuesta " + entrada
+    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`
+    Carta.appendChild(entradaElegida)}
+
+    let Ringside = () => {Carta.innerHTML = "La entrada cuesta " + entrada * 1.5
+    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`
+    Carta.appendChild(entradaElegida)}
+    
+    let DePie = () => {Carta.innerHTML = "La entrada cuesta " + entrada * 0.7
+    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`/*El boton te llevaria a Ticketmaster*/
+    Carta.appendChild(entradaElegida)}
+
+    //document.getElementById("btnGeneral").addEventListener("click", () => Carta.innerHTML = "La entrada cuesta " + entrada)
+    document.getElementById("btnGeneral").addEventListener("click", General)
+    document.getElementById("btnRingside").addEventListener("click", Ringside)
+    document.getElementById("btnDePie").addEventListener("click", DePie)
+}
+
+/* Reemplazado
 function ConsultarFecha(){
     alert("Hay eventos en Octubre y Noviembre")
     let elegirFecha
@@ -78,7 +124,9 @@ function ConsultarFecha(){
     let fecha = elegirFecha == "octubre" ? "13/10/2023 y 27/10/2023" : "08/11/2023";
     alert("Hay eventos en " + fecha)
 }
+*/
 
+/*Reemplazado
 function CalcularPrecio(){
     let elegirEntrada
     do {
@@ -90,6 +138,7 @@ function CalcularPrecio(){
     else if (elegirEntrada == "pie") entrada *= 0.70
     alert("La entrada cuesta " + entrada + "$")
 }
+*/
 
 function InfoLuchadores(){
     alert("Que deseas consultar?")
