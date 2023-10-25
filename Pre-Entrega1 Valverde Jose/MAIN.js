@@ -5,6 +5,12 @@ function Luchador(nombre, nacionalidad, lesionado){
     this.lesionado = lesionado
 }
 
+function Programa(fecha, lugar, precioBase){
+    this.fecha = fecha,
+    this.lugar = lugar,
+    this.precioBase = precioBase
+}
+
 const luchador = new Luchador("Mack (El Rayo) Reyna", "Uruguayo", false)
 const luchador1 = new Luchador("Charlie Bullet", "Argentino", false)
 const luchador2 = new Luchador("Comandante Fort", "Argentino", true)
@@ -16,12 +22,27 @@ const luchador7 = new Luchador("Ivan (El Vikingo)", "Argentino", false)
 const luchador8 = new Luchador("Angel Suarez", "Argentino", false)
 const luchador9 = new Luchador("Payaso Gomez", "Paraguayo", false)
 
-const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchador5, luchador6, luchador7, luchador8, luchador9];
+const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchador5, luchador6, luchador7, luchador8, luchador9]
+
+const evento1 = new Programa('15/11/2023', "Lanus", 2500)
+const evento2 = new Programa('25/11/2023', "LomasDeZamora", 2500)
+const evento3 = new Programa('10/12/2023', "Tigre", 3000)
+const evento4 = new Programa('21/12/2023', "Cordoba", 3250)
+const evento5 = new Programa('1/1/2024', "CABA", 4500)
+const evento6 = new Programa('15/1/2024', "Cordoba", 3000)
+const evento7 = new Programa('27/1/2024', "CABA", 4000)
+const evento8 = new Programa('9/2/2024', "Tigre", 3000)
+
+const eventosProgramados = [evento1, evento2, evento3, evento4, evento5, evento6, evento7, evento8]
 
 localStorage.setItem('luchadoresData', JSON.stringify(luchadores))
+localStorage.setItem('eventosData', JSON.stringify(eventosProgramados))
 
 const Carta = document.getElementById("carta")
+
 document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
+//document.getElementById("btnIniciarConsulta").addEventListener("click", Eventos)
+//document.getElementById("btnEventos").addEventListener("click", ElegirConsulta)
 
 /*
 document.getElementById("btnConsultarEventos").addEventListener("click", ConsultarFecha)
@@ -52,6 +73,11 @@ function ElegirTarea(){
 }
 
 */
+
+function Eventos(){
+    Carta.innerHTML = "Eventos Programados y Boletos"
+    eventosProgramados.forEach( (even) => Carta.append(even.fecha, even.lugar))
+}
 
 function ElegirConsulta(){
     Carta.innerHTML = ""
