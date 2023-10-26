@@ -5,12 +5,6 @@ function Luchador(nombre, nacionalidad, lesionado){
     this.lesionado = lesionado
 }
 
-function Programa(fecha, lugar, precioBase){
-    this.fecha = fecha,
-    this.lugar = lugar,
-    this.precioBase = precioBase
-}
-
 const luchador = new Luchador("Mack (El Rayo) Reyna", "Uruguayo", false)
 const luchador1 = new Luchador("Charlie Bullet", "Argentino", false)
 const luchador2 = new Luchador("Comandante Fort", "Argentino", true)
@@ -24,21 +18,34 @@ const luchador9 = new Luchador("Payaso Gomez", "Paraguayo", false)
 
 const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchador5, luchador6, luchador7, luchador8, luchador9]
 
+localStorage.setItem('luchadoresData', JSON.stringify(luchadores))
+
+function Programa(fecha, lugar, precioBase){
+    this.fecha = fecha,
+    this.lugar = lugar,
+    this.precioBase = precioBase
+}
+
 const evento1 = new Programa('15/11/2023', "Lanus", 2500)
-const evento2 = new Programa('25/11/2023', "LomasDeZamora", 2500)
+const evento2 = new Programa('25/11/2023', "Lomas De Zamora", 2500)
 const evento3 = new Programa('10/12/2023', "Tigre", 3200)
 const evento4 = new Programa('21/12/2023', "Cordoba", 3250)
-const evento5 = new Programa('1/1/2024', "CABA", 4500)
-const evento6 = new Programa('15/1/2024', "Cordoba", 3000)
-const evento7 = new Programa('27/1/2024', "CABA", 4000)
-const evento8 = new Programa('9/2/2024', "Tigre", 3000)
+const evento5 = new Programa('01/01/2024', "CABA", 4500)
+const evento6 = new Programa('15/01/2024', "Cordoba", 3000)
+const evento7 = new Programa('27/01/2024', "CABA", 4000)
+const evento8 = new Programa('09/02/2024', "Tigre", 3000)
 
 const eventos = [evento1, evento2, evento3, evento4, evento5, evento6, evento7, evento8]
 
-localStorage.setItem('luchadoresData', JSON.stringify(luchadores))
 localStorage.setItem('eventosData', JSON.stringify(eventos))
 
 const Carta = document.getElementById("carta")
+Carta.style.padding = "15px"
+Carta.style.backgroundColor = "#727a82"
+Carta.style.border = "2px solid #369"
+Carta.style.borderRadius = "10px"
+Carta.style.color = "black"
+Carta.style.fontSize = "20px"
 
 document.getElementById("btnEventos").addEventListener("click", Eventos)
 
@@ -54,17 +61,34 @@ function Eventos(){
         ticket.addEventListener("click", function(){ CompraBoletos(eventos[i])})
         Carta.appendChild(datos)
         Carta.appendChild(ticket)
+        EventosCss(datos, ticket)
     }
 }
 
 function CompraBoletos(base){
     Carta.innerHTML = "Evento " + base.fecha + " " + base.lugar
     let localidades = document.createElement("div")
-    localidades.innerHTML = `<p>Entradas Generales - Precio ` + base.precioBase + `<button id="btnComprarBoletos"> Comprar en TicketMaster </button>` + 
-    `<p>Entradas Ringside - Precio ` + base.precioBase * 1.5 + `<button id="btnComprarBoletos"> Comprar en TicketMaster </button>` + 
-    `<p>Entradas Generales - Precio ` + base.precioBase * 0.7 + `<button id="btnComprarBoletos"> Comprar en TicketMaster </button>`
+    localidades.innerHTML = `<p>Entradas Generales - Precio ` + base.precioBase + `<button id="btnComprarBoletosG"> Comprar en TicketMaster </button>` + 
+    `<p>Entradas Ringside - Precio ` + base.precioBase * 1.5 + `<button id="btnComprarBoletosR"> Comprar en TicketMaster </button>` + 
+    `<p>Entradas Generales - Precio ` + base.precioBase * 0.7 + `<button id="btnComprarBoletosP"> Comprar en TicketMaster </button>`
     //Los botones te llevarian a TicketMaster
     Carta.appendChild(localidades)
+}
+
+function EventosCss(div, button){
+    div.style.padding = "15px"
+    div.style.backgroundColor = "#e7e7e7"
+    div.style.border = "2px solid #369"
+    div.style.borderRadius = "10px"
+    div.style.color = "black"
+
+    button.style.backgroundColor = "#48b8b8"
+    button.style.color = "black"
+    button.style.borderRadius = "10px"
+    button.style.padding = "10px 20px"
+    button.style.cursor = "pointer"
+    button.addEventListener("mouseover", function () { button.style.backgroundColor = "#0056b3" })
+    button.addEventListener("mouseout", function () { button.style.backgroundColor = "#48b8b8" })
 }
 
 //Actualizar
@@ -212,28 +236,5 @@ function CalcularPrecio(){
     alert("La entrada cuesta " + entrada + "$")
 }
 */
-
-function InfoLuchadores(){
-    alert("Que deseas consultar?")
-    let info = parseInt(prompt("1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
-    while (isNaN(info) || info === '' || info > 2 || info < 1){
-    info = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
-    }
-    if (info == 1) MostrarInfo()
-    else if (info == 2) InfoLesionados()
-}
-function MostrarInfo(){
-    for (let i = 0; i < luchadores.length; i++){
-        alert("Nombre: " + luchadores[i].nombre + "\nNacionalidad: " + luchadores[i].nacionalidad)}
-    alert("Gracias por su consulta")    
-}
-function InfoLesionados(){
-    const lesionados = []
-    luchadores.forEach( (lucha) => {if(lucha.lesionado) lesionados.push(lucha.nombre)} )
-    alert("Los lesionados son: ")
-    for (let i = 0; i < lesionados.length; i++){
-        alert(lesionados[i])
-    }
-}
 
 //ElegirTarea()
