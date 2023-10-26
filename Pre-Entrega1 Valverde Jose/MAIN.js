@@ -20,20 +20,21 @@ const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchad
 
 localStorage.setItem('luchadoresData', JSON.stringify(luchadores))
 
-function Programa(fecha, lugar, precioBase){
+function Programa(fecha, lugar, local, precioBase){
     this.fecha = fecha,
     this.lugar = lugar,
+    this.local = local,
     this.precioBase = precioBase
 }
 
-const evento1 = new Programa('15/11/2023', "Lanus", 2500)
-const evento2 = new Programa('25/11/2023', "Lomas De Zamora", 2500)
-const evento3 = new Programa('10/12/2023', "Tigre", 3200)
-const evento4 = new Programa('21/12/2023', "Cordoba", 3250)
-const evento5 = new Programa('01/01/2024', "CABA", 4500)
-const evento6 = new Programa('15/01/2024', "Cordoba", 3000)
-const evento7 = new Programa('27/01/2024', "CABA", 4000)
-const evento8 = new Programa('09/02/2024', "Tigre", 3000)
+const evento1 = new Programa('15/11/2023', "Lanus", "Microestadio de Lanus", 2500)
+const evento2 = new Programa('25/11/2023', "Temperley", "Auditorio Sur", 2500)
+const evento3 = new Programa('10/12/2023', "Rosario", "Anfiteatro Humberto de Nito", 3200)
+const evento4 = new Programa('21/12/2023', "Cordoba", "Teatro Real", 3250)
+const evento5 = new Programa('01/01/2024', "CABA", "Teatro Flores", 4500)
+const evento6 = new Programa('15/01/2024', "Cordoba", "Quality Espacio", 3000)
+const evento7 = new Programa('27/01/2024', "CABA", "Teatro Ópera Orbis", 4000)
+const evento8 = new Programa('09/02/2024', "CABA", "La Trastienda", 3000)
 
 const eventos = [evento1, evento2, evento3, evento4, evento5, evento6, evento7, evento8]
 
@@ -53,7 +54,7 @@ function Eventos(){
     Carta.innerHTML = "Eventos Programados y Boletos"
     for(let i = 0; i < eventos.length; i++){
         let datos = document.createElement("div")
-        datos.innerHTML = eventos[i].fecha + " " + eventos[i].lugar
+        datos.innerHTML = eventos[i].fecha + " " + eventos[i].lugar + " / " + eventos[i].local
         console.log(datos)
         let ticket = document.createElement("button")
         ticket.id = "btnComprarBoletos" + i
@@ -66,7 +67,7 @@ function Eventos(){
 }
 
 function CompraBoletos(base){
-    Carta.innerHTML = "Evento " + base.fecha + " " + base.lugar
+    Carta.innerHTML = "Evento " + base.fecha + " " + base.lugar + " / " + base.local
     let localidades = document.createElement("div")
     localidades.innerHTML = `<p>Entradas Generales - Precio ` + base.precioBase + `<button id="btnComprarBoletosG"> Comprar en TicketMaster </button>` + 
     `<p>Entradas Ringside - Precio ` + base.precioBase * 1.5 + `<button id="btnComprarBoletosR"> Comprar en TicketMaster </button>` + 
