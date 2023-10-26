@@ -26,59 +26,75 @@ const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchad
 
 const evento1 = new Programa('15/11/2023', "Lanus", 2500)
 const evento2 = new Programa('25/11/2023', "LomasDeZamora", 2500)
-const evento3 = new Programa('10/12/2023', "Tigre", 3000)
+const evento3 = new Programa('10/12/2023', "Tigre", 3200)
 const evento4 = new Programa('21/12/2023', "Cordoba", 3250)
 const evento5 = new Programa('1/1/2024', "CABA", 4500)
 const evento6 = new Programa('15/1/2024', "Cordoba", 3000)
 const evento7 = new Programa('27/1/2024', "CABA", 4000)
 const evento8 = new Programa('9/2/2024', "Tigre", 3000)
 
-const eventosProgramados = [evento1, evento2, evento3, evento4, evento5, evento6, evento7, evento8]
+const eventos = [evento1, evento2, evento3, evento4, evento5, evento6, evento7, evento8]
 
 localStorage.setItem('luchadoresData', JSON.stringify(luchadores))
-localStorage.setItem('eventosData', JSON.stringify(eventosProgramados))
+localStorage.setItem('eventosData', JSON.stringify(eventos))
 
 const Carta = document.getElementById("carta")
 
-document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
-//document.getElementById("btnIniciarConsulta").addEventListener("click", Eventos)
-//document.getElementById("btnEventos").addEventListener("click", ElegirConsulta)
-
-/*
-document.getElementById("btnConsultarEventos").addEventListener("click", ConsultarFecha)
-document.getElementById("btnConsultarEntradas").addEventListener("click", CalcularPrecio)
-document.getElementById("btnConsultarLuchadores").addEventListener("click", InfoLuchadores)
-
-/* Reemplazado
-
-function ElegirTarea(){
-    alert("Por favor elija la consulta que desea hacer")
-    let tarea = parseInt(prompt("1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
-    while (isNaN(tarea) || tarea === '' || tarea > 3 || tarea < 1){
-    tarea = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
-    }
-    switch(tarea){
-        case 1:
-            ConsultarFecha()
-            break
-        case 2:
-            CalcularPrecio()
-            break
-        case 3:
-            InfoLuchadores()    
-        default:
-            alert("Por favor ingrese un numero valido.")
-            break
-    }
-}
-
-*/
+document.getElementById("btnEventos").addEventListener("click", Eventos)
 
 function Eventos(){
     Carta.innerHTML = "Eventos Programados y Boletos"
-    eventosProgramados.forEach( (even) => Carta.append(even.fecha, even.lugar))
+    for(let i = 0; i < eventos.length; i++){
+        let datos = document.createElement("div")
+        datos.innerHTML = eventos[i].fecha + " " + eventos[i].lugar
+        console.log(datos)
+        let ticket = document.createElement("button")
+        ticket.id = "btnComprarBoletos" + i
+        ticket.textContent = "Comprar Boletos"
+        ticket.addEventListener("click", function(){ CompraBoletos(eventos[i])})
+        Carta.appendChild(datos)
+        Carta.appendChild(ticket)
+    }
 }
 
+function CompraBoletos(base){
+    Carta.innerHTML = "Evento " + base.fecha + " " + base.lugar
+    let localidades = document.createElement("div")
+    localidades.innerHTML = `<p>Entradas Generales - Precio ` + base.precioBase + `<button id="btnComprarBoletos"> Comprar en TicketMaster </button>` + 
+    `<p>Entradas Ringside - Precio ` + base.precioBase * 1.5 + `<button id="btnComprarBoletos"> Comprar en TicketMaster </button>` + 
+    `<p>Entradas Generales - Precio ` + base.precioBase * 0.7 + `<button id="btnComprarBoletos"> Comprar en TicketMaster </button>`
+    //Los botones te llevarian a TicketMaster
+    Carta.appendChild(localidades)
+}
+
+//Actualizar
+
+function InfoLuchadores(){
+    alert("Que deseas consultar?")
+    let info = parseInt(prompt("1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
+    while (isNaN(info) || info === '' || info > 2 || info < 1){
+    info = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
+    }
+    if (info == 1) MostrarInfo()
+    else if (info == 2) InfoLesionados()
+}
+function MostrarInfo(){
+    for (let i = 0; i < luchadores.length; i++){
+        alert("Nombre: " + luchadores[i].nombre + "\nNacionalidad: " + luchadores[i].nacionalidad)}
+    alert("Gracias por su consulta")    
+}
+function InfoLesionados(){
+    const lesionados = []
+    luchadores.forEach( (lucha) => {if(lucha.lesionado) lesionados.push(lucha.nombre)} )
+    alert("Los lesionados son: ")
+    for (let i = 0; i < lesionados.length; i++){
+        alert(lesionados[i])
+    }
+}
+
+
+//document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
+/*
 function ElegirConsulta(){
     Carta.innerHTML = ""
     const consultas = document.createElement("div")
@@ -131,7 +147,7 @@ function PrecioDeEntradas(){
     Carta.appendChild(entradaElegida)}
     
     let DePie = () => {Carta.innerHTML = "La entrada cuesta " + entrada * 0.7
-    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`/*El boton te llevaria a Ticketmaster*/
+    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`/*El boton te llevaria a Ticketmaster
     Carta.appendChild(entradaElegida)}
 
     //document.getElementById("btnGeneral").addEventListener("click", () => Carta.innerHTML = "La entrada cuesta " + entrada)
@@ -139,6 +155,37 @@ function PrecioDeEntradas(){
     document.getElementById("btnRingside").addEventListener("click", Ringside)
     document.getElementById("btnDePie").addEventListener("click", DePie)
 }
+*/
+
+/*
+document.getElementById("btnConsultarEventos").addEventListener("click", ConsultarFecha)
+document.getElementById("btnConsultarEntradas").addEventListener("click", CalcularPrecio)
+document.getElementById("btnConsultarLuchadores").addEventListener("click", InfoLuchadores)
+
+/* Reemplazado
+
+function ElegirTarea(){
+    alert("Por favor elija la consulta que desea hacer")
+    let tarea = parseInt(prompt("1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
+    while (isNaN(tarea) || tarea === '' || tarea > 3 || tarea < 1){
+    tarea = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
+    }
+    switch(tarea){
+        case 1:
+            ConsultarFecha()
+            break
+        case 2:
+            CalcularPrecio()
+            break
+        case 3:
+            InfoLuchadores()    
+        default:
+            alert("Por favor ingrese un numero valido.")
+            break
+    }
+}
+
+*/
 
 /* Reemplazado
 function ConsultarFecha(){
