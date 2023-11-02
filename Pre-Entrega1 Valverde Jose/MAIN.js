@@ -1,25 +1,35 @@
 
-function Luchador(nombre, nacionalidad, record, lesionado){
+function Luchador(nombre, nacionalidad, finisher, record, lesionado, campeon){
     this.nombre = nombre,
     this.nacionalidad = nacionalidad,
+    this.finisher = finisher,
     this.record = record,
-    this.lesionado = lesionado
+    this.lesionado = lesionado,
+    this.campeon = campeon
 }
 
-const luchador = new Luchador("Mack (El Rayo) Reyna", "Uruguayo", '6 G/ 2 E/ 11 D', false)
-const luchador1 = new Luchador("Charlie Bullet", "Argentino", '9 G/ 0 E/ 3 D', false)
-const luchador2 = new Luchador("Comandante Fort", "Argentino", '3 G/ 0 E/ 14 D', true)
-const luchador3 = new Luchador("RAIJIN", "Argentino", '12 G/ 0 E/ 0 D', false)
-const luchador4 = new Luchador("Mascara Negra", "Mexicano", '11 G/ 0 E/ 6 D', false)
-const luchador5 = new Luchador("Leon Maldonado", "Argentino", '7 G/ 1 E/ 11 D', false)
-const luchador6 = new Luchador("Furia Sagrada jr.", "Uruguayo", '10 G/ 0 E/ 3 D', true)
-const luchador7 = new Luchador("Ivan (El Vikingo)", "Argentino", '10 G/ 0 E/ 10 D', false)
-const luchador8 = new Luchador("Angel Suarez", "Argentino", '11 G/ 0 E/ 8D', false)
-const luchador9 = new Luchador("Payaso Gomez", "Paraguayo", '6 G/ 0 E/ 16 D', false)
-const luchador10 = new Luchador("(El Cordoba) Rodrigo", "Argentino", '1 G/ 0 E/ 0 D', false)
-const luchador11 = new Luchador("El Veterano", "Argentino", '13 G/ 1 E/ 15 D', true)
+const lucha1 = new Luchador("Charlie Bullet", "Argentino", "BuckShot", '9 G/ 0 E/ 3 D', false)
+const lucha2 = new Luchador("Comandante Fort", "Argentino", "Quebradora Argentina", '3 G/ 0 E/ 14 D', true)
+const lucha3 = new Luchador("RAIJIN", "Argentino", "TAIKO", '10 G/ 0 E/ 0 D', false)
+const lucha4 = new Luchador("Mascara Negra", "Mexicano", "Muerte Negra", '11 G/ 0 E/ 6 D', false, "Campeon PWND Junior")
+const lucha5 = new Luchador("Leon Maldonado", "Argentino", "LionTamer", '7 G/ 1 E/ 11 D', false)
+const lucha6 = new Luchador("Furia Sagrada jr.", "Uruguayo", "FURIA", '10 G/ 0 E/ 3 D', true)
+const lucha7 = new Luchador("Ivan (El Vikingo)", "Argentino", "Niflheim", '10 G/ 0 E/ 10 D', false)
+const lucha8 = new Luchador("Angel Suarez", "Argentino", "One Winged Angel", '11 G/ 0 E/ 8 D', false)
+const lucha9 = new Luchador("Payaso Gomez", "Paraguayo", "PunchLine", '6 G/ 0 E/ 10 D', false)
+const lucha10 = new Luchador("Mack (El Rayo) Reyna", "", "Uruguayo", '10 G/ 2 E/ 11 D', false, "Campeon en Parejas PWND")
+const lucha11 = new Luchador("El Veterano", "Argentino", "Viejos Tiempos", '13 G/ 1 E/ 15 D', true)
+const lucha12 = new Luchador("White BULL", "Mexicano", "BOOMbazo", '18 G/ 1 E/ 2 D', false, "Campeon PWND")
+const lucha13 = new Luchador("Carlos Strong", "Argentino", "Lanza Strong", '8 G/ 0 E/ 12 D', false)
+const lucha14 = new Luchador("El Oriental", "Uruguayo", "KillSwitch", '11 G/ 1 E/ 5 D', false, "Campeon en Parejas PWND")
+const lucha15 = new Luchador("Jaime Halcon", "Argentino", "Cetreria", '2 G/ 0 E/ 8 D', false)
+const lucha16 = new Luchador("MALLKU", "Boliviano", "Kharisiri", '7 G/ 0 E/ 4 D', false)
+const lucha17 = new Luchador("D.A.G.A.", "Argentino", "Dragon Sleeper", '6 G/ 0 E/ 1 D', false)
+const lucha18 = new Luchador("RUSHER", "Argentino", "La Adrenalina", '3 G/ 0 E/ 1 D', true)
+const lucha19 = new Luchador("Santiago de Santiago", "Chileno", "Ushigoroshi", '1 G/ 0 E/ 2 D', false)
+const lucha20 = new Luchador("(El Cordoba) Rodrigo", "Argentino", "Potro Volador", '1 G/ 0 E/ 0 D', false)
 
-const luchadores = [luchador, luchador1, luchador2, luchador3, luchador4, luchador5, luchador6, luchador7, luchador8, luchador9, luchador10, luchador11]
+const luchadores = [lucha1, lucha2, lucha3, lucha4, lucha5, lucha6, lucha7, lucha8, lucha9, lucha10, lucha11, lucha12, lucha13, lucha14, lucha15, lucha16, lucha17, lucha18, lucha19, lucha20]
 
 localStorage.setItem('luchadoresData', JSON.stringify(luchadores))
 
@@ -45,14 +55,20 @@ localStorage.setItem('eventosData', JSON.stringify(eventos))
 
 const Carta = document.getElementById("carta")
 Carta.style.padding = "15px"
-Carta.style.backgroundColor = "#727a82"
-Carta.style.border = "2px solid #369"
+Carta.style.backgroundColor = "gray"
+Carta.style.border = "2px solid blue"
 Carta.style.borderRadius = "10px"
 Carta.style.color = "black"
 Carta.style.fontSize = "20px"
 
+const cartaNoticia = document.getElementById("cartaNoticia");
+const tituloNoticia = document.getElementById("tituloNoticia");
+const articuloNoticia = document.getElementById("articuloNoticia");
+const btnVolverNoticias = document.getElementById("btnVolver");
+
 document.getElementById("btnEventos").addEventListener("click", Eventos)
 document.getElementById("btnLuchadores").addEventListener("click", Luchadores)
+document.getElementById("btnNoticias").addEventListener("click", MostrarNoticias);
 
 function Eventos(){
     Carta.innerHTML = "Eventos Programados y Boletos" + "<p>"
@@ -75,7 +91,7 @@ function CompraBoletos(base){
     let localidades = document.createElement("div")
     localidades.style.padding = "15px"
     localidades.style.backgroundColor = "black"
-    localidades.style.border = "2px solid #369"
+    localidades.style.border = "2px solid blue"
     localidades.style.borderRadius = "10px"
     localidades.style.color = "white"
     localidades.style.fontSize = "22px"
@@ -89,7 +105,7 @@ function CompraBoletos(base){
 
 function EventosCss(div, button){
     div.style.padding = "15px"
-    div.style.backgroundColor = "#e7e7e7"
+    div.style.backgroundColor = "white"
     div.style.border = "2px solid #369"
     div.style.borderRadius = "10px"
     div.style.color = "black"
@@ -104,43 +120,88 @@ function EventosCss(div, button){
     button.addEventListener("mouseout", function () { button.style.backgroundColor = "#48b8b8" })
 }
 
-function Luchadores(){
+
+
+
+
+function Luchadores() {
     Carta.innerHTML = "Informacion de nuestros Luchadores" + "<p>" + "<p>"
     luchadores.forEach((luchador) => {
-    const luchadorCarta = document.createElement("div")
+        const luchadorCarta = document.createElement("div")
 
-    LuchadoresCss(luchadorCarta)
+        LuchadoresCss(luchadorCarta)
 
-    const nombre = document.createElement("div")
-    nombre.style.fontWeight = "bold"
-    nombre.textContent = "Nombre: " + luchador.nombre
+        const nombre = document.createElement("div")
+        nombre.style.fontWeight = "bold"
+        nombre.style.cursor = "pointer"
+        nombre.textContent = "Nombre: " + luchador.nombre
 
-    const nacionalidad = document.createElement("div")
-    nacionalidad.style.color = "#777"
-    nacionalidad.textContent = "Nacionalidad: " + luchador.nacionalidad
+        const datosOcultos = document.createElement("div")
+        datosOcultos.style.height = "0"
+        datosOcultos.style.opacity = 0
+        datosOcultos.style.overflow = "hidden"
+        datosOcultos.style.transition = "height 0.5s, opacity 0.5s"
 
-    const record = document.createElement("div")
-    record.style.color = "blue"
-    record.textContent = luchador.record
-    console.log(record)
+        const nacionalidad = document.createElement("div")
+        nacionalidad.style.color = "#666666"
+        nacionalidad.textContent = "Nacionalidad: " + luchador.nacionalidad
 
-    const lesionado = document.createElement("div")
-    lesionado.style.fontWeight = "bold"
-    lesionado.style.color = "red"
-    lesionado.textContent = luchador.lesionado ? "Lesionado" : " "
+        const remate = document.createElement("div")
+        remate.style.color = "green"
+        remate.textContent = "Remate: " + luchador.finisher
 
-    luchadorCarta.appendChild(nombre)
-    luchadorCarta.appendChild(nacionalidad)
-    luchadorCarta.appendChild(record)
-    luchadorCarta.appendChild(lesionado)
+        const record = document.createElement("div")
+        record.style.color = "blue"
+        record.textContent = "Record: " + luchador.record
 
-    Carta.appendChild(luchadorCarta)
+        const lesionado = document.createElement("div")
+        lesionado.style.fontWeight = "bold"
+        lesionado.style.color = "red"
+        lesionado.textContent = luchador.lesionado ? "Lesionado" : " "
+
+        const campeon = document.createElement("div")
+        campeon.style.fontWeight = "bold"
+        campeon.style.color = "orange"
+        campeon.textContent = luchador.campeon != null ? luchador.campeon : " "
+
+        datosOcultos.appendChild(nacionalidad)
+        datosOcultos.appendChild(remate)
+        datosOcultos.appendChild(record)
+        datosOcultos.appendChild(lesionado)
+        datosOcultos.appendChild(campeon)
+
+        luchadorCarta.appendChild(nombre)
+        luchadorCarta.appendChild(datosOcultos)
+
+        nombre.addEventListener("click", function () {
+            if (datosOcultos.style.height === "0px") {
+                anime({
+                    targets: datosOcultos,
+                    height: datosOcultos.scrollHeight + "px",
+                    opacity: 1,
+                    duration: 200,
+                    easing: 'easeInOutQuad',
+                })
+            } else {
+                anime({
+                    targets: datosOcultos,
+                    height: "0px",
+                    opacity: 0,
+                    duration: 200,
+                    easing: 'easeInOutQuad',
+                })
+            }
+        })
+
+        Carta.appendChild(luchadorCarta)
     })
 }
 
+
+
 function LuchadoresCss(cartaL){
     cartaL.style.backgroundColor = "white"
-    cartaL.style.border = "1px solid #777"
+    cartaL.style.border = "2px solid blue"
     cartaL.style.borderRadius = "15px"
     cartaL.style.padding = "20px"
     cartaL.style.margin = "20px"
@@ -148,6 +209,93 @@ function LuchadoresCss(cartaL){
     cartaL.style.textAlign = "left"
     cartaL.style.width = "300px"
 }
+
+async function MostrarNoticias() {
+    Carta.innerHTML = "";
+
+    fetch("noticias.json")
+    .then(response => response.json())
+    .then(data => {
+    const Noticias = data.noticias
+
+    Noticias.forEach((noticia) => {
+        const noticiaCarta = document.createElement("div")
+        noticiaCarta.style.backgroundColor = "white"
+        noticiaCarta.style.border = "2px solid blue"
+        noticiaCarta.style.borderRadius = "15px"
+        noticiaCarta.style.padding = "20px"
+        noticiaCarta.style.margin = "20px"
+        noticiaCarta.style.textAlign = "center"
+
+        const titulo = document.createElement("h2")
+        titulo.style.cursor = "pointer"
+        titulo.textContent = noticia.tit
+
+        const descripcion = document.createElement("p")
+        descripcion.style.color = "#666666"
+        descripcion.textContent = noticia.des
+
+        noticiaCarta.appendChild(titulo)
+        noticiaCarta.appendChild(descripcion)
+
+        titulo.addEventListener("click", function () {
+            tituloNoticia.textContent = noticia.tit
+            articuloNoticia.textContent = noticia.not
+            articuloNoticia.innerHTML = noticia.not.replace(/\n/g, '<p>')
+            cartaNoticia.style.display = "block"
+            Carta.style.display = "none"
+            cartaNoticia.style.padding = "15px"
+            cartaNoticia.style.backgroundColor = "#b3b3b3"
+            cartaNoticia.style.border = "2px solid blue"
+            cartaNoticia.style.borderRadius = "10px"
+            cartaNoticia.style.color = "black"
+            cartaNoticia.style.fontSize = "23px"
+            
+        })
+
+        Carta.appendChild(noticiaCarta)
+    })
+    
+    btnVolverNoticias.addEventListener("click", function () {
+        cartaNoticia.style.display = "none"
+        Carta.style.display = "block"
+    })
+    })
+}
+
+anime.timeline({
+  loop: false,
+})
+  .add({
+    targets: '#PWND',
+    opacity: 1,
+    duration: 1000,
+    delay: 250,
+    easing: 'easeInOutQuad',
+  })
+  .add({
+    targets: '#PWND',
+    strokeDashoffset: [anime.setDashoffset, 1],
+    easing: 'easeInOutSine',
+    duration: 5000,
+  });
+
+  /*anime.timeline({
+    loop: false,
+  })
+    .add({
+      targets: 'button',
+      opacity: 1,
+      duration: 1000,
+      easing: 'easeInOutQuad',
+    })
+    .add({
+      targets: 'button',
+      strokeDashoffset: [anime.setDashoffset, 1],
+      easing: 'easeInOutSine',
+      duration: 5000,
+    });*/
+
 
 //document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
 /*
@@ -292,4 +440,4 @@ function InfoLesionados(){
     }
 }*/
 
-//ElegirTarea()
+//ElegirTarea()*/

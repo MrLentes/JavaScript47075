@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <style>
     body {
         font-family: Arial, sans-serif;
         background-color: #000000;
         text-align: center;
-        color : #ffffff;
+        color : white;
     }
 
     h1 {
-        color: #8f1111;
-        text-shadow: 0 0 15px #ffffff, 0 0 15px #ffffff;
+        font-size: 48px;
+        color: #6d1111;
+        text-shadow: 0 0 15px white, 0 0 15px whitesmoke;
+        opacity: 0;
     }
 
     button {
-        background-color: #124375;
+        background-color: blueviolet;
         color: white;
         border-radius: 10px;
         padding: 10px 20px;
@@ -29,19 +32,25 @@
     }
 
     button:hover {
-        background-color: #0d6cd4;
+        background-color: blue;
     }
     
 </style>
 <body>
     
-    <h1>Bienvenido a PWND Wrestling</h1>
+    <h1 id = "PWND">PWND Wrestling</h1>
     <button id = "btnNoticias">NOTICIAS</button>
     <button id = "btnEventos">EVENTOS</button>
     <button id = "btnLuchadores">LUCHADORES</button>
     <button id = "btnTienda">TIENDA</button>
 
     <div id = "carta"></div>
+
+    <div id="cartaNoticia" style="display: none;">
+        <h2 id="tituloNoticia"></h2>
+        <p id="articuloNoticia"></p>
+        <button id="btnVolver">Volver a Noticias</button>
+    </div>
 
     <!--
         
