@@ -1,0 +1,325 @@
+
+{
+    "tienda": [
+        {
+            "luchador" : "White BULL",
+            "tipo" : "Camiseta",
+            "diseño" : "El TORO de PWND",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Blanco",
+            "color 3" : "Azul",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Versus",
+            "tipo" : "Camiseta",
+            "diseño" : "White BULL vs Furia Sagrada jr",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Blanco",
+            "color 3" : "Rojo",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "White BULL",
+            "tipo" : "Poster",
+            "diseño" : "Campeon PWND",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Furia Sagrada jr",
+            "tipo" : "Mascara",
+            "diseño" : "Fuego de Oro",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "RAIJIN",
+            "tipo" : "Camiseta",
+            "diseño" : "Dios del Trueno",
+            "colores" : true,
+            "color 1" : "Morado",
+            "color 2" : "Azul",
+            "color 3" : "Rojo",
+            "color 4" : "Blanco"
+        },
+        {
+            "luchador" : "Versus",
+            "tipo" : "Camiseta",
+            "diseño" : "White BULL vs RAIJIN",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Azul",
+            "color 3" : "Rojo",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "PWND",
+            "tipo" : "Replica de Titulo",
+            "diseño" : "Campeón PWND",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "PWND",
+            "tipo" : "Replica de Titulo",
+            "diseño" : "Campeón PWND Junior",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "PWND",
+            "tipo" : "Poster",
+            "diseño" : "Cartelera 15/11/2023",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "RAIJIN",
+            "tipo" : "Camiseta",
+            "diseño" : "10-0",
+            "colores" : true,
+            "color 1" : "Blanco",
+            "color 2" : "Gris",
+            "color 3" : "Negro",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Furia Sagrada jr",
+            "tipo" : "Camiseta",
+            "diseño" : "FURIA",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Blanco",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "El Rayo Oriental",
+            "tipo" : "Sudadera",
+            "diseño" : "Bandera Uruguaya",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "PWND",
+            "tipo" : "Sudadera",
+            "diseño" : "Logo PWND",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Rojo",
+            "color 3" : "Blanco",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "D.A.G.A.",
+            "tipo" : "Camiseta",
+            "diseño" : "Dragon Argentino",
+            "colores" : true,
+            "color 1" : "Blanco",
+            "color 2" : "Negro",
+            "color 3" : "Gris",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "El Veterano",
+            "tipo" : "Camiseta",
+            "diseño" : "Celeste y Blanca",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Azul",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "RUSHER",
+            "tipo" : "Camiseta",
+            "diseño" : "Craneo en Llamas",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Blanco",
+            "color 3" : "Rojo",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Mascara Negra",
+            "tipo" : "Mascara",
+            "diseño" : "Deep Dark",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "MALLKU",
+            "tipo" : "Poster",
+            "diseño" : "Huasa Mallku",
+            "colores" : true,
+            "color 1" : "Rojo",
+            "color 2" : "Gris",
+            "color 3" : "Blanco",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Mascara Negra",
+            "tipo" : "Mascara",
+            "diseño" : "Aguila Real",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Angel Suarez",
+            "tipo" : "Camiseta",
+            "diseño" : "Ala de Angel",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Blanco",
+            "color 3" : "Gris",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Ivan (El Vikingo)",
+            "tipo" : "Camiseta",
+            "diseño" : "Ragnarok",
+            "colores" : true,
+            "color 1" : "Rojo",
+            "color 2" : "Azul",
+            "color 3" : "Verde",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "(El Cordoba) Rodrigo",
+            "tipo" : "Camiseta",
+            "diseño" : "Replica de la Seleccion",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Charlie Bullet",
+            "tipo" : "Camiseta",
+            "diseño" : "BuckShot",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Azul",
+            "color 3" : "Rojo",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Leon Maldonado",
+            "tipo" : "Sudadera",
+            "diseño" : "Alma de Leon",
+            "colores" : true,
+            "color 1" : "Rojo",
+            "color 2" : "Gris",
+            "color 3" : "Blanco",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "White BULL",
+            "tipo" : "Sudadera",
+            "diseño" : "Desde Mexico",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Blanco",
+            "color 3" : "Gris",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "El Veterano",
+            "tipo" : "Poster",
+            "diseño" : "Blanco y Negro",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "PWND",
+            "tipo" : "Sudadera",
+            "diseño" : "PWND Celeste y Blanca",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Gris",
+            "color 3" : "Azul",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "RAIJIN",
+            "tipo" : "Camiseta",
+            "diseño" : "TAIKO",
+            "colores" : true,
+            "color 1" : "Negro",
+            "color 2" : "Blanco",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "El Rayo Oriental",
+            "tipo" : "Poster",
+            "diseño" : "Campeones en Parejas",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Mascara Negra",
+            "tipo" : "Mascara",
+            "diseño" : "Bandera Mexicana",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Versus",
+            "tipo" : "Poster",
+            "diseño" : "Carlos Strong vs Angel Suarez",
+            "colores" : false,
+            "color 1" : "",
+            "color 2" : "",
+            "color 3" : "",
+            "color 4" : ""
+        },
+        {
+            "luchador" : "Mascara Negra",
+            "tipo" : "Camiseta",
+            "diseño" : "8-bits",
+            "colores" : true,
+            "color 1" : "Blanco",
+            "color 2" : "Rojo",
+            "color 3" : "Azul",
+            "color 4" : ""
+        }
+    ]
+}

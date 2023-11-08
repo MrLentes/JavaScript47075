@@ -17,7 +17,7 @@ const lucha6 = new Luchador("Furia Sagrada jr.", "Uruguayo", "FURIA", '10 G/ 0 E
 const lucha7 = new Luchador("Ivan (El Vikingo)", "Argentino", "Niflheim", '10 G/ 0 E/ 10 D', false)
 const lucha8 = new Luchador("Angel Suarez", "Argentino", "One Winged Angel", '11 G/ 0 E/ 8 D', false)
 const lucha9 = new Luchador("Payaso Gomez", "Paraguayo", "PunchLine", '6 G/ 0 E/ 10 D', false)
-const lucha10 = new Luchador("Mack (El Rayo) Reyna", "", "Uruguayo", '10 G/ 2 E/ 11 D', false, "Campeon en Parejas PWND")
+const lucha10 = new Luchador("Mack (El Rayo) Reyna", "Uruguayo", "Lightning Drop", '10 G/ 2 E/ 11 D', false, "Campeon en Parejas PWND")
 const lucha11 = new Luchador("El Veterano", "Argentino", "Viejos Tiempos", '13 G/ 1 E/ 15 D', true)
 const lucha12 = new Luchador("White BULL", "Mexicano", "BOOMbazo", '18 G/ 1 E/ 2 D', false, "Campeon PWND")
 const lucha13 = new Luchador("Carlos Strong", "Argentino", "Lanza Strong", '8 G/ 0 E/ 12 D', false)
@@ -61,14 +61,32 @@ Carta.style.borderRadius = "10px"
 Carta.style.color = "black"
 Carta.style.fontSize = "20px"
 
-const cartaNoticia = document.getElementById("cartaNoticia");
-const tituloNoticia = document.getElementById("tituloNoticia");
-const articuloNoticia = document.getElementById("articuloNoticia");
-const btnVolverNoticias = document.getElementById("btnVolver");
+anime.timeline({
+    loop: false,
+  })
+    .add({
+      targets: '#PWND',
+      opacity: 1,
+      duration: 1000,
+      delay: 250,
+      easing: 'easeInOutQuad',
+    })
+    .add({
+      targets: '#PWND',
+      strokeDashoffset: [anime.setDashoffset, 1],
+      easing: 'easeInOutSine',
+      duration: 5000,
+    });
+
+const cartaNoticia = document.getElementById("cartaNoticia")
+const tituloNoticia = document.getElementById("tituloNoticia")
+const articuloNoticia = document.getElementById("articuloNoticia")
+const btnVolverNoticias = document.getElementById("btnVolver")
 
 document.getElementById("btnEventos").addEventListener("click", Eventos)
 document.getElementById("btnLuchadores").addEventListener("click", Luchadores)
-document.getElementById("btnNoticias").addEventListener("click", MostrarNoticias);
+document.getElementById("btnNoticias").addEventListener("click", MostrarNoticias)
+document.getElementById("btnTienda").addEventListener("click", MostrarTienda)
 
 function Eventos(){
     Carta.innerHTML = "Eventos Programados y Boletos" + "<p>"
@@ -263,23 +281,72 @@ async function MostrarNoticias() {
     })
 }
 
-anime.timeline({
-  loop: false,
-})
-  .add({
-    targets: '#PWND',
-    opacity: 1,
-    duration: 1000,
-    delay: 250,
-    easing: 'easeInOutQuad',
-  })
-  .add({
-    targets: '#PWND',
-    strokeDashoffset: [anime.setDashoffset, 1],
-    easing: 'easeInOutSine',
-    duration: 5000,
-  });
+function MostrarTienda(){
+    Carta.innerHTML = ""
+    fetch("tienda.json")
+    .then(response => response.json())
+    .then(data => {
+    const productos = data.tienda
+    productos.forEach((producto) => {
+        const productoCarta = document.createElement("div")
+        productoCarta.className = "producto-carta"
+        productoCarta.style.backgroundColor = "white"
+        productoCarta.style.border = "2px solid blue"
+        productoCarta.style.borderRadius = "15px"
+        productoCarta.style.padding = "20px"
+        productoCarta.style.margin = "20px"
+        productoCarta.style.textAlign = "center"
 
+        const nombreProducto = producto.tipo + " " + producto.diseño + " " + producto.luchador
+        const btnProducto = document.createElement("button")
+        btnProducto.textContent = producto.colores ? "Elegir Color" : "Agregar al Carrito"
+
+
+
+
+        btnProducto.addEventListener("click", function () {
+            if (producto.colores) {
+                //mostrar colores
+                //mostrar los colores disponibles y usar el boton agregar al carrito
+                //usar la funcion para confirmar agregar al carrito
+            } else {
+                //una funcion para confirmar que se agrega al carrito
+            }
+        })
+
+        productoCarta.appendChild(document.createTextNode(nombreProducto))
+        productoCarta.appendChild(document.createElement("br"))
+        productoCarta.appendChild(btnProducto)
+
+        Carta.appendChild(productoCarta)
+    })
+}
+)}
+
+
+function agregarAlCarrito(item) {
+    let carrito = JSON.parse(sessionStorage.getItem('carritoData')) || []
+    carrito.push(item);
+    sessionStorage.setItem('carritoData', JSON.stringify(carrito))
+}
+
+const btnVerCarrito = document.getElementById("carrito")
+btnVerCarrito.addEventListener("click", mostrarCarrito)
+
+function mostrarCarrito() {
+    const carrito = JSON.parse(sessionStorage.getItem('carritoData'))
+    if (carrito && carrito.length > 0) {
+        Carta.innerHTML = "Productos en el carrito:\n" + carrito.join("\n")
+    } else {
+        Carta.innerHTML = "El carrito está vacío."
+    }
+}
+
+
+
+
+
+    //usando anime.js
   /*anime.timeline({
     loop: false,
   })
@@ -297,6 +364,8 @@ anime.timeline({
     });*/
 
 
+
+    
 //document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
 /*
 function ElegirConsulta(){
