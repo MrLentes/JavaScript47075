@@ -289,7 +289,7 @@ function MostrarTienda(){
     const productos = data.tienda
     productos.forEach((producto) => {
         const productoCarta = document.createElement("div")
-        productoCarta.className = "producto-carta"
+        productoCarta.style.fontWeight = "bold"
         productoCarta.style.backgroundColor = "white"
         productoCarta.style.border = "2px solid blue"
         productoCarta.style.borderRadius = "15px"
@@ -301,16 +301,19 @@ function MostrarTienda(){
         const btnProducto = document.createElement("button")
         btnProducto.textContent = producto.colores ? "Elegir Color" : "Agregar al Carrito"
 
-
-
-
         btnProducto.addEventListener("click", function () {
             if (producto.colores) {
-                //mostrar colores
-                //mostrar los colores disponibles y usar el boton agregar al carrito
-                //usar la funcion para confirmar agregar al carrito
+                const colores = [producto.color1, producto.color2, producto.color3, producto.color4]
+                colores.forEach((color) => {
+                    if (color != ""){
+                        let boton = document.createElement("button")
+                        boton.style.backgroundColor = color
+                        boton.addEventListener("click", function(){ agregarAlCarrito(producto) })
+                        productoCarta.appendChild(boton)
+                    }
+                })
             } else {
-                //una funcion para confirmar que se agrega al carrito
+                agregarAlCarrito(producto)
             }
         })
 
@@ -323,11 +326,11 @@ function MostrarTienda(){
 }
 )}
 
-
 function agregarAlCarrito(item) {
     let carrito = JSON.parse(sessionStorage.getItem('carritoData')) || []
     carrito.push(item);
     sessionStorage.setItem('carritoData', JSON.stringify(carrito))
+    Swal.fire(`${item.tipo} ${item.luchador} fue añadido al carrito`)
 }
 
 const btnVerCarrito = document.getElementById("carrito")
