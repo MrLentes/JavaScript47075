@@ -78,6 +78,10 @@ anime.timeline({
       duration: 5000,
     });
 
+const PWNDTitulo = document.getElementById("PWND")
+PWNDTitulo.style.cursor = "pointer"
+PWNDTitulo.addEventListener("click", () => location.reload())
+
 const cartaNoticia = document.getElementById("cartaNoticia")
 const tituloNoticia = document.getElementById("tituloNoticia")
 const articuloNoticia = document.getElementById("articuloNoticia")
@@ -114,10 +118,10 @@ function CompraBoletos(base){
     localidades.style.color = "white"
     localidades.style.fontSize = "22px"
     localidades.style.fontWeight = "bold"
-    localidades.innerHTML = `<p>Entradas Generales - Precio ` + base.precioBase + `<button id="btnComprarBoletosG"> Comprar en TicketMaster </button>` + 
-    `<p>Entradas Ringside - Precio ` + base.precioBase * 1.5 + `<button id="btnComprarBoletosR"> Comprar en TicketMaster </button>` + 
-    `<p>Entradas De Pie - Precio ` + base.precioBase * 0.7 + `<button id="btnComprarBoletosP"> Comprar en TicketMaster </button>`
-    //Los botones te llevarian a TicketMaster
+    localidades.innerHTML = `<p>Entradas Generales - Precio ${base.precioBase} <button id="btnComprarBoletos"> Comprar en Ticketek </button>` + 
+    `<p>Entradas Ringside - Precio ${base.precioBase * 1.5} <button id="btnComprarBoletos"> Comprar en Ticketek </button>` + 
+    `<p>Entradas De Pie - Precio ${base.precioBase * 0.7} <button id="btnComprarBoletos"> Comprar en Ticketek </button>`
+    //Los botones te llevarian a Ticketek
     Carta.appendChild(localidades)
 }
 
@@ -137,10 +141,6 @@ function EventosCss(div, button){
     button.addEventListener("mouseover", function () { button.style.backgroundColor = "#0056b3" })
     button.addEventListener("mouseout", function () { button.style.backgroundColor = "#48b8b8" })
 }
-
-
-
-
 
 function Luchadores() {
     Carta.innerHTML = "Informacion de nuestros Luchadores" + "<p>" + "<p>"
@@ -328,7 +328,7 @@ function MostrarTienda(){
 
 function agregarAlCarrito(item) {
     let carrito = JSON.parse(sessionStorage.getItem('carritoData')) || []
-    carrito.push(item);
+    carrito.push(item.tipo + " " + item.luchador);
     sessionStorage.setItem('carritoData', JSON.stringify(carrito))
     Swal.fire(`${item.tipo} ${item.luchador} fue añadido al carrito`)
 }
@@ -338,178 +338,50 @@ btnVerCarrito.addEventListener("click", mostrarCarrito)
 
 function mostrarCarrito() {
     const carrito = JSON.parse(sessionStorage.getItem('carritoData'))
+    const vaciarCarrito = document.createElement("button")
+    const comprar = document.createElement("button")
+    vaciarCarrito.addEventListener("click", function(){ TerminarTienda(1) })
+    comprar.addEventListener("click", function(){ TerminarTienda(2) })
     if (carrito && carrito.length > 0) {
         Carta.innerHTML = "Productos en el carrito:\n" + carrito.join("\n")
+        CarritoCss(vaciarCarrito, comprar)
+        Carta.appendChild(vaciarCarrito)
+        Carta.appendChild(comprar)
     } else {
         Carta.innerHTML = "El carrito está vacío."
     }
 }
 
+function CarritoCss(boton1, boton2){
+    boton1.textContent = "Vaciar Carrito"
+    boton1.style.backgroundColor = "#48b8b8"
+    boton1.style.color = "black"
+    boton1.style.borderRadius = "10px"
+    boton1.style.padding = "10px 20px"
+    boton1.style.cursor = "pointer"
+    boton1.style.fontSize = "18px"
+    boton1.addEventListener("mouseover", function () { boton1.style.backgroundColor = "#0056b3" })
+    boton1.addEventListener("mouseout", function () { boton1.style.backgroundColor = "#48b8b8" })
 
-
-
-
-    //usando anime.js
-  /*anime.timeline({
-    loop: false,
-  })
-    .add({
-      targets: 'button',
-      opacity: 1,
-      duration: 1000,
-      easing: 'easeInOutQuad',
-    })
-    .add({
-      targets: 'button',
-      strokeDashoffset: [anime.setDashoffset, 1],
-      easing: 'easeInOutSine',
-      duration: 5000,
-    });*/
-
-
-
-    
-//document.getElementById("btnIniciarConsulta").addEventListener("click", ElegirConsulta)
-/*
-function ElegirConsulta(){
-    Carta.innerHTML = ""
-    const consultas = document.createElement("div")
-    consultas.innerHTML = `
-        <p>Por favor elija la consulta que desea hacer:</p>
-        <button id="btnEventos"> Consultar eventos programados</button>
-        <button id="btnPrecio"> Consultar precio de entradas</button>
-        <button id="btnLuchadores"> Consultar información de los luchadores</button>
-    `
-    Carta.appendChild(consultas)
-
-    document.getElementById("btnEventos").addEventListener("click", ConsultarEventos)
-    document.getElementById("btnPrecio").addEventListener("click", PrecioDeEntradas)
-    document.getElementById("btnLuchadores").addEventListener("click", InfoLuchadores)
+    boton2.textContent = "Comprar"
+    boton2.style.backgroundColor = "#48b8b8"
+    boton2.style.color = "black"
+    boton2.style.borderRadius = "10px"
+    boton2.style.padding = "10px 20px"
+    boton2.style.cursor = "pointer"
+    boton2.style.fontSize = "18px"
+    boton2.addEventListener("mouseover", function () { boton2.style.backgroundColor = "#0056b3" })
+    boton2.addEventListener("mouseout", function () { boton2.style.backgroundColor = "#48b8b8" })
 }
 
-function ConsultarEventos(){
-    Carta.innerHTML = "Hay eventos en Octubre y Noviembre"
-    const eventoElegido = document.createElement("div")
-    eventoElegido.innerHTML = `
-        <p>Elija que mes que quiere consultar:</p>
-        <button id = "btnOctubre">Octubre</button>
-        <button id = "btnNoviembre">Noviembre</button>
-    `
-    Carta.appendChild(eventoElegido)
-    
-    let octubre = "Hay eventos en 13/10/2023 y 27/10/2023"
-    let noviembre = "Hay eventos en 08/11/2023"
-    document.getElementById("btnOctubre").addEventListener("click", () => Carta.innerHTML = octubre)
-    document.getElementById("btnNoviembre").addEventListener("click", () => Carta.innerHTML = noviembre)
-}
-
-function PrecioDeEntradas(){
-    Carta.innerHTML = "Elija el tipo de entrada que desee consultar"
-    const entradaElegida = document.createElement("div")
-    entradaElegida.innerHTML = `
-        <button id="btnGeneral">Asientos Generales</button>
-        <button id="btnRingside">Asientos Ringside</button>
-        <button id="btnDePie">De pie</button>
-    `
-    Carta.appendChild(entradaElegida)
-    let entrada = 2500
-
-    let General = () => {Carta.innerHTML = "La entrada cuesta " + entrada
-    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`
-    Carta.appendChild(entradaElegida)}
-
-    let Ringside = () => {Carta.innerHTML = "La entrada cuesta " + entrada * 1.5
-    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`
-    Carta.appendChild(entradaElegida)}
-    
-    let DePie = () => {Carta.innerHTML = "La entrada cuesta " + entrada * 0.7
-    entradaElegida.innerHTML = `<button id="btnTicketMaster">Comprar Entradas</button>`/*El boton te llevaria a Ticketmaster
-    Carta.appendChild(entradaElegida)}
-
-    //document.getElementById("btnGeneral").addEventListener("click", () => Carta.innerHTML = "La entrada cuesta " + entrada)
-    document.getElementById("btnGeneral").addEventListener("click", General)
-    document.getElementById("btnRingside").addEventListener("click", Ringside)
-    document.getElementById("btnDePie").addEventListener("click", DePie)
-}
-*/
-
-/*
-document.getElementById("btnConsultarEventos").addEventListener("click", ConsultarFecha)
-document.getElementById("btnConsultarEntradas").addEventListener("click", CalcularPrecio)
-document.getElementById("btnConsultarLuchadores").addEventListener("click", InfoLuchadores)
-
-/* Reemplazado
-
-function ElegirTarea(){
-    alert("Por favor elija la consulta que desea hacer")
-    let tarea = parseInt(prompt("1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
-    while (isNaN(tarea) || tarea === '' || tarea > 3 || tarea < 1){
-    tarea = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los eventos programados. \n2.- Consultar el precio de entradas. \n3.- Consultar informacion de los luchadores"))
+function TerminarTienda(aux){
+    sessionStorage.clear()
+    if (aux == 1){
+        Swal.fire(`Se Vacio el Carrito`)
+    } else {
+        Swal.fire(`Gracias por su compra`)
     }
-    switch(tarea){
-        case 1:
-            ConsultarFecha()
-            break
-        case 2:
-            CalcularPrecio()
-            break
-        case 3:
-            InfoLuchadores()    
-        default:
-            alert("Por favor ingrese un numero valido.")
-            break
-    }
+    setTimeout(() => {
+        location.reload()
+    }, 1250);
 }
-
-*/
-
-/* Reemplazado
-function ConsultarFecha(){
-    alert("Hay eventos en Octubre y Noviembre")
-    let elegirFecha
-    do {
-        elegirFecha = prompt("Elija que mes quiere consultar \n Octubre o Noviembre").toLowerCase()
-    } while (elegirFecha != "octubre" && elegirFecha != "noviembre")
-    let fecha = elegirFecha == "octubre" ? "13/10/2023 y 27/10/2023" : "08/11/2023";
-    alert("Hay eventos en " + fecha)
-}
-*/
-
-/*Reemplazado
-function CalcularPrecio(){
-    let elegirEntrada
-    do {
-        elegirEntrada = prompt("Elija el tipo de entrada que desee consultar. \nAsientos Generales (General). \n Asientos Ringside (Ringside). \n De pie (Pie).").toLowerCase()
-    } while (elegirEntrada != "general" && elegirEntrada != "ringside" && elegirEntrada != "pie")
-    let entrada = 2500
-    if (elegirEntrada == "general") entrada *= 1
-    else if (elegirEntrada == "ringside") entrada *= 1.5
-    else if (elegirEntrada == "pie") entrada *= 0.70
-    alert("La entrada cuesta " + entrada + "$")
-}
-*/
-
-/*function InfoLuchadores(){
-    alert("Que deseas consultar?")
-    let info = parseInt(prompt("1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
-    while (isNaN(info) || info === '' || info > 2 || info < 1){
-    info = parseInt(prompt("Ingrese una opcion correcta. \n1.- Consultar los luchadores de la empresa. \n2.- Consultar los luchadores lesionados."))
-    }
-    if (info == 1) MostrarInfo()
-    else if (info == 2) InfoLesionados()
-}
-function MostrarInfo(){
-    for (let i = 0; i < luchadores.length; i++){
-        alert("Nombre: " + luchadores[i].nombre + "\nNacionalidad: " + luchadores[i].nacionalidad)}
-    alert("Gracias por su consulta")    
-}
-function InfoLesionados(){
-    const lesionados = []
-    luchadores.forEach( (lucha) => {if(lucha.lesionado) lesionados.push(lucha.nombre)} )
-    alert("Los lesionados son: ")
-    for (let i = 0; i < lesionados.length; i++){
-        alert(lesionados[i])
-    }
-}*/
-
-//ElegirTarea()*/
